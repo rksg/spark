@@ -53,7 +53,7 @@ private[spark] class ExecutorPodsPollingSnapshotSource(
   }
 
   private class PollRunnable(applicationId: String) extends Runnable {
-    override def run(): Unit = tryLogNonFatalError {
+    override def run(): Unit = Utils.tryLogNonFatalError {
       logDebug(s"Resynchronizing full executor pod state from Kubernetes.")
       snapshotsStore.replaceSnapshot(kubernetesClient
         .pods()
